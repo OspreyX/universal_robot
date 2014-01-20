@@ -5,7 +5,7 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find ur_description)/urdf/ur5.transmission.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/ur.transmission.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/ur5.gazebo.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/materials.urdf.xacro" />
 <!--
@@ -252,7 +252,7 @@ center_of_mass = [ [0, -0.02561, 0.00193], [0.2125, 0, 0.11336], [0.11993, 0.0, 
 
   <link name="${prefix}ee_link" />
 
-  <xacro:ur5_arm_transmission name="${prefix}" />
+  <xacro:ur_arm_transmission prefix="${prefix}" />
 
   <gazebo reference="universal_robot">
     <material>Gazebo/Blue</material>

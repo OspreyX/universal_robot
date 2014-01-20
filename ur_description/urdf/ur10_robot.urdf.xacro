@@ -5,8 +5,11 @@
        xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        name="ur10" >
 
-  <!-- common stuff -->
-  <xacro:include filename="$(find ur_description)/urdf/gazebo.urdf.xacro" />
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/ur10</robotNamespace>
+    </plugin>
+  </gazebo>
 
   <!-- ur10 -->
   <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />

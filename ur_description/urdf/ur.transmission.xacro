@@ -5,7 +5,7 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro">
 
-	<xacro:macro name="ur5_arm_transmission" params="name">
+	<xacro:macro name="ur_arm_transmission" params="prefix">
 		
 		<transmission name="shoulder_pan_trans">
 			<type>transmission_interface/SimpleTransmission</type>
@@ -13,7 +13,7 @@
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${name}shoulder_pan_joint"/>
+			<joint name="${prefix}shoulder_pan_joint"/>
 		</transmission>
 	
 		<transmission name="shoulder_lift_trans">
@@ -22,7 +22,7 @@
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${name}shoulder_lift_joint"/>
+			<joint name="${prefix}shoulder_lift_joint"/>
 		</transmission>
 	
 		<transmission name="elbow_trans">
@@ -31,7 +31,7 @@
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${name}elbow_joint"/>
+			<joint name="${prefix}elbow_joint"/>
 		</transmission>
 	
 		<transmission name="wrist_1_trans">
@@ -40,7 +40,7 @@
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${name}wrist_1_joint"/>
+			<joint name="${prefix}wrist_1_joint"/>
 		</transmission>
 	
 		<transmission name="wrist_2_trans">
@@ -49,7 +49,7 @@
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${name}wrist_2_joint"/>
+			<joint name="${prefix}wrist_2_joint"/>
 		</transmission>
 	
 		<transmission name="wrist_3_trans">
@@ -58,7 +58,7 @@
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${name}wrist_3_joint"/>
+			<joint name="${prefix}wrist_3_joint"/>
 		</transmission> 
 
 	</xacro:macro>
