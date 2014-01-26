@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+  <!-- send frida urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find ur_description)/urdf/husky.urdf.xacro'" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.1" respawn="false" output="screen" />
+
+  <!-- Fake Calibration -->
+  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration" args="pub /calibrated std_msgs/Bool true" />
+
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <rosparam>
+      freq: 10.0
+      sensor_timeout: 1.0
+      publish_tf: true
+      odom_used: true
+      vo_used: true
+      output_frame: odom
+    </rosparam>
+  </node>
+
+  <group ns="ur5">
+    <rosparam file="$(find ur_gazebo)/controller/arm_controller_ur5.yaml" command="load"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="joint_state_controller
+              shoulder_pan_position_controller
+              shoulder_lift_position_controller
+              elbow_position_controller
+              wrist_1_position_controller
+              wrist_2_position_controller
+              wrist_3_position_controller"/>
+  </group>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/ur5/joint_states" />
+  </node>
+
+</launch>
