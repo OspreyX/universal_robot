@@ -35,6 +35,7 @@
               wrist_1_position_controller
               wrist_2_position_controller
               wrist_3_position_controller"/>
+	<node name="action_server" pkg="ur_gazebo" type="sim_action_server.py" />
   </group>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
